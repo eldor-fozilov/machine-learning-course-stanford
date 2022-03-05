@@ -62,23 +62,59 @@ Theta2_grad = zeros(size(Theta2));
 %               and Theta2_grad from Part 2.
 %
 
+X = [ones(m,1) X];
+
+% Part 1
+
+% compute H
+A2 = [ones(m, 1) sigmoid(X*Theta1')]; % The rows of A2 matrix contains are activations of the hidden layer, including the bias term
+  
+H = sigmoid(A2*Theta2'); % the hypothesis for each example (there are 5000 examples)
+
+for class = 1:num_labels
+    fit = (class == y);
+    J = J + (-1/m) * ((fit' * log(H(:,class))) + (1 - fit)' * log(1 - H(:,class)));
+end
+
+% Part 2
+% Backpropogation Algorithm
+for i = 1:m
+
+  % forward propogation
+  a1 = X(i,:)';
+  z2 = Theta1 * a1;
+  a2 = sigmoid(z2);
+  a2 = [1; a2];
+  z3 = Theta2 * a2;
+  a3 = sigmoid(z3);
+    
+  % error computation
+  y_new = zeros(num_labels, 1);
+  y_new(y(i)) = 1;
+  delta3 = a3 - y_new;
+  delta2 = (Theta2(:,2:end)' * delta3) .* sigmoidGradient(z2);
+    
+  % update Theta1_grad and Theta2_grad
+  Theta1_grad = Theta1_grad + delta2 * a1';
+  Theta2_grad = Theta2_grad + delta3 * a2';
+end
+
+% computer the particial derivate matrices (D1 and D2)
+% D1
+Theta1_grad = (1/m) * Theta1_grad + (lambda/m) * Theta1;
+Theta1_grad(:,1) = Theta1_grad(:,1) - (lambda/m) * Theta1(:,1);
+% D2
+Theta2_grad = (1/m) * Theta2_grad + (lambda/m) * Theta2;
+Theta2_grad(:,1) = Theta2_grad(:,1) - (lambda/m) * Theta2(:,1);
 
 
+% Part 3
+% we add regulization term to the cost function
+Theta1_temp = Theta1(:,2:end);
+Theta2_temp = Theta2(:,2:end);
+reg_term = lambda * (1/(2*m)) * (sum(Theta1_temp(:).^2) + sum(Theta2_temp(:).^2));
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+J = J + reg_term;
 
 % -------------------------------------------------------------
 
