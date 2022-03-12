@@ -21,7 +21,23 @@ idx = zeros(size(X,1), 1);
 % Note: You can use a for-loop over the examples to compute this.
 %
 
+num_examples = size(X,1);
+num_centroids = size(centroids,1);
 
+for i = 1:num_examples
+    input = X(i,:);
+
+    min_distance = (input - centroids(1,:))*(input - centroids(1,:))'; % initial minimum distance
+    idx(i) = 1;
+    for j = 2:num_centroids
+        distance = (input - centroids(j,:))*(input - centroids(j,:))';
+        if distance < min_distance
+            min_distance = distance;
+            idx(i) = j;
+        end
+    end
+
+end
 
 
 

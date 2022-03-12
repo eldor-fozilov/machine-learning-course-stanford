@@ -13,11 +13,12 @@ centroids = zeros(K, size(X, 2));
 %               the dataset X
 %
 
+% Initialize the centroids to be random examples
 
-
-
-
-
+%Randomly reorder the indicies of examples
+randidx = randperm(size(X,1));
+% Take the first K examples
+centroids = X(randidx(1:K),:);
 
 
 % =============================================================
