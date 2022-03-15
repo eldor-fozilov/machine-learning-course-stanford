@@ -1,6 +1,6 @@
 ## Machine Learning Course on Coursera offered by Stanford University
 It was a pleasure to take that course and learn from one of the biggest experts in machine learning, Andrew Ng.
-I would recommend taking this course for anyone interested in learning basic/advanced machine learning algorithms on a fairly deep level and applying them to real-world problems. The knowledge from that course will benefit you regardless of your domain since machine learning is expected to enter almost every field in the future.
+I would recommend taking this course for anyone interested in learning basic/advanced machine learning algorithms on a fairly deep level and applying them to real-world problems. One caveat is that the theory behind some of the advanced algorithms covered in the class might not be fully explained, so if you want to learn the nitty-gritty details, do your own research. Anyway, the knowledge from that course will benefit you regardless of your domain since machine learning is expected to enter almost every field in the future.
 
 I have completed weekly assignments and quizzes given in that course and posted all of them here in this repository. You can take a look at them if you struggle when taking the course (but don't look at the solutions without trying to solve the problems on your own first :), promise?)
 
